@@ -1,7 +1,5 @@
 import tkinter as tk
-from gui.real_numbers import InputGUI
-from gui.interval_numbers import IntervalGUI
-from gui.singleton_numbers import SingletonGUI
+from gui.functional_gui import InputGUI
 from utility import parsers
 
 
