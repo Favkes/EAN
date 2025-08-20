@@ -2,6 +2,7 @@ import tkinter as tk
 from gui.real_numbers import RealGUI
 from gui.interval_numbers import IntervalGUI
 from gui.singleton_numbers import SingletonGUI
+from utility import parsers
 
 
 class App:
@@ -39,26 +40,15 @@ class App:
         )
 
         self.real_gui = RealGUI(self.mainframe)
-        self.interval_gui = IntervalGUI(self.mainframe)
-        self.singleton_gui = SingletonGUI(self.mainframe)
+        self.parser = lambda s: None
+        # self.interval_gui = IntervalGUI(self.mainframe)
+        # self.singleton_gui = SingletonGUI(self.mainframe)
 
-        self.modes_map = {
-            'real': self.real_gui,
-            'interval': self.interval_gui,
-            'singleton': self.singleton_gui
+        self.parser_modes_map = {
+            'real': parsers.parse_real,
+            'interval': parsers.parse_interval,
+            'singleton': parsers.parse_singleton
         }
-
-        self.real_gui.grid(
-            row=1, column=1
-        ); self.real_gui.grid_remove()
-
-        self.interval_gui.grid(
-            row=1, column=1
-        ); self.interval_gui.grid_remove()
-
-        self.singleton_gui.grid(
-            row=1, column=1
-        ); self.singleton_gui.grid_remove()
 
 
     def build(self):
@@ -77,17 +67,19 @@ class App:
         self.mode_switch_C.grid(
             row=2, column=0, sticky='w'
         )
-        self.real_gui.grid()
+        self.real_gui.grid(
+            row=1, column=1
+        )
 
 
     def update_mode(self):
-        if self.current_mode.get() not in self.modes_map.keys():
+        if self.current_mode.get() not in self.parser_modes_map.keys():
             raise Exception(f'Incorrect mode key request: {self.current_mode.get()}')
 
-        for mode in self.modes_map.values():
-            mode.grid_remove()
+        # for mode in self.modes_map.values():
+        #     mode.grid_remove()
 
-        self.modes_map[self.current_mode.get()].grid()
+        self.parser = self.parser_modes_map[self.current_mode.get()]
 
 
     def display(self):
