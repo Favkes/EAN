@@ -71,6 +71,8 @@ class App:
             row=1, column=1
         )
 
+        self.functional_gui.build()
+
 
     def update_mode(self):
         if self.current_mode.get() not in self.parser_modes_map.keys():
