@@ -1,5 +1,5 @@
 import tkinter as tk
-from gui.real_numbers import RealGUI
+from gui.real_numbers import InputGUI
 from gui.interval_numbers import IntervalGUI
 from gui.singleton_numbers import SingletonGUI
 from utility import parsers
@@ -39,7 +39,7 @@ class App:
             command=self.update_mode
         )
 
-        self.real_gui = RealGUI(self.mainframe)
+        self.real_gui = InputGUI(self.mainframe)
         self.parser = lambda s: None
         # self.interval_gui = IntervalGUI(self.mainframe)
         # self.singleton_gui = SingletonGUI(self.mainframe)
