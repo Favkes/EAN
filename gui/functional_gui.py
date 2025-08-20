@@ -6,7 +6,7 @@ class InputGUI(tk.Frame):
         super().__init__(root_frame)
         self.root_frame = root_frame
 
-        self.label = tk.Label(self, text="REAL")
+        self.label = tk.Label(self, text="GUI")
         self.label.pack()
 
 

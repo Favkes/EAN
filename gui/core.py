@@ -9,7 +9,7 @@ class App:
         self.mainframe = tk.Frame(self.root)
 
         self.title_label = tk.Label(
-            self.mainframe,
+            self.root,
             text='Oto nowa ma wytyczna - Analiza Numeryczna!'
         )
 
@@ -37,7 +37,7 @@ class App:
             command=self.update_mode
         )
 
-        self.real_gui = InputGUI(self.mainframe)
+        self.functional_gui = InputGUI(self.mainframe)
         self.parser = lambda s: None
         # self.interval_gui = IntervalGUI(self.mainframe)
         # self.singleton_gui = SingletonGUI(self.mainframe)
@@ -53,6 +53,7 @@ class App:
         self.title_label.grid(
             row=0, column=0, sticky='w'
         )
+
         self.mode_switch_frame.grid(
             row=1, column=0, sticky='w'
         )
@@ -65,7 +66,8 @@ class App:
         self.mode_switch_C.grid(
             row=2, column=0, sticky='w'
         )
-        self.real_gui.grid(
+
+        self.functional_gui.grid(
             row=1, column=1
         )
 
@@ -81,5 +83,6 @@ class App:
 
 
     def display(self):
-        self.mainframe.pack(anchor='w')
+        self.title_label.pack(anchor='n')
+        self.mainframe.pack(side='left')
         self.root.mainloop()
