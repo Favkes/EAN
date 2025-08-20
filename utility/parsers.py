@@ -2,7 +2,7 @@ from mpmath import iv
 
 
 def parse_real(s: str):
-    s = s.replace(' ', '')
+    s = s.replace(' ', '').replace('\n', '')
     args = s.split(',')
     return [int(x) for x in args]
 
@@ -12,7 +12,7 @@ def parse_singleton(s: str):
 
 
 def parse_interval(s: str):
-    s = s.replace(' ', '')
+    s = s.replace(' ', '').replace('\n', '')
     s = s.replace('[', '').replace(']', '').replace(';', ',')
     args = s.split(',')
     args = [int(x) for x in args]
