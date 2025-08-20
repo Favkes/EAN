@@ -13,10 +13,10 @@ class InputGUI(tk.Frame):
             self,
             text="Input data:"
         )
-        self.input_field_var = tk.StringVar()
-        self.input_field_entry = tk.Entry(
+        self.input_field_entry = tk.Text(
             self,
-            textvariable=self.input_field_var
+            height=5,
+            width=20
         )
 
     def build(self):
