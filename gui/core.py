@@ -15,7 +15,6 @@ class App:
         self.root = root_window
         self.mainframe = tk.Frame(self.root)
         self.mainframe.rowconfigure(1, weight=1)
-        make_focusable(self.mainframe)
 
         self.title_label = tk.Label(
             self.root,
@@ -45,10 +44,6 @@ class App:
             value='singleton',
             command=self.update_mode
         )
-        make_focusable(self.mode_switch_frame)
-        make_focusable(self.mode_switch_A)
-        make_focusable(self.mode_switch_B)
-        make_focusable(self.mode_switch_C)
 
         self.functional_gui = InputGUI(self.mainframe)
         self.parser = lambda s: None
@@ -72,6 +67,12 @@ class App:
 
 
     def build(self):
+        make_focusable(self.mainframe)
+        make_focusable(self.mode_switch_frame)
+        make_focusable(self.mode_switch_A)
+        make_focusable(self.mode_switch_B)
+        make_focusable(self.mode_switch_C)
+
         self.title_label.grid(
             row=0, column=0, sticky='w'
         )
