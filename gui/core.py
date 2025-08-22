@@ -1,6 +1,7 @@
 import tkinter as tk
 from gui.functional_gui import InputGUI
 from utility import parsers
+from utility import algorithm
 
 
 def make_focusable(widget: tk.Widget):
@@ -8,16 +9,6 @@ def make_focusable(widget: tk.Widget):
         '<Button-1>',
         lambda event: event.widget.master.focus_set()
     )
-
-
-def calculate_button_func(input_x: InputGUI, input_y: InputGUI, input_z: InputGUI):
-    data_x = input_x.input_field_entry.get("1.0", "end-1c")
-    data_y = input_y.input_field_entry.get("1.0", "end-1c")
-    data_z = input_z.input_field_entry.get("1.0", "end-1c")
-
-    print(data_x)
-    print(data_y)
-    print(data_z)
 
 
 parser_modes_map: dict = {
@@ -42,8 +33,6 @@ class App:
         self.root = root_window
         self.mainframe = tk.Frame(self.root)
         self.mainframe.rowconfigure(1, weight=1)
-
-        self.parser = lambda s: None
 
         self.title_label = tk.Label(
             self.root,
@@ -85,10 +74,13 @@ class App:
         self.calculate_button = tk.Button(
             self.input_frame,
             text='Calculate',
-            command=lambda : calculate_button_func(self.input_gui_x, self.input_gui_y, self.input_gui_z)
+            command=self.calculate_button_func
         )
 
         self.output_box = tk.Text(self.mainframe, width=80, height=10, state='disabled')
+
+        # self.parser = lambda s: None
+        self.update_mode()
 
 
     def update_mode(self):
@@ -120,6 +112,34 @@ class App:
         self.input_gui_z.update_input_filter(
             input_allowed_chars_map[self.current_mode.get()]
         )
+
+
+    def calculate_button_func(self):
+        data_x = self.input_gui_x.input_field_entry.get("1.0", "end-1c")
+        data_y = self.input_gui_y.input_field_entry.get("1.0", "end-1c")
+        data_z = self.input_gui_z.input_field_entry.get("1.0", "end-1c")
+
+        data_x = self.parser(data_x)
+        data_y = self.parser(data_y)
+        data_z = self.parser(data_z)
+
+        print('x', data_x)
+        print('y', data_y)
+        print('z', data_z)
+
+        output = algorithm.lagrange(
+            data_x,
+            data_y,
+            data_z
+        )
+
+        output = str(output)
+        print(output)
+
+        self.output_box.config(state='normal')
+        self.output_box.delete("1.0", "end")
+        self.output_box.insert("1.0", output)
+        self.output_box.config(state='disabled')
 
 
     def build(self):
