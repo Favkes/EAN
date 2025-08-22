@@ -45,7 +45,7 @@ class App:
             command=self.update_mode
         )
 
-        self.functional_gui = InputGUI(self.mainframe)
+        self.functional_gui = InputGUI(self, self.mainframe)
         self.parser = lambda s: None
 
         self.parser_modes_map: dict = {
