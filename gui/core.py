@@ -170,6 +170,11 @@ class App:
             error_message='Incorrect data format in field \'New Point x\':\n{}'
         )
 
+        if len(data_x) != len(data_y):
+            self.write_output('The number of X values does not match that of the Y values.\n'
+                              f'x.size() = {len(data_x)}, y.size() = {len(data_y)}')
+            return
+
         if None not in (data_x, data_y, data_z):
             print('x', data_x)
             print('y', data_y)
