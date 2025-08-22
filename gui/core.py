@@ -176,22 +176,22 @@ class App:
             return
 
         if None not in (data_x, data_y, data_z):
-            print('x', data_x)
-            print('y', data_y)
-            print('z', data_z)
+            # print('x', data_x)
+            # print('y', data_y)
+            # print('z', data_z)
 
             output = algorithm.lagrange(
                 data_x,
                 data_y,
                 data_z
             )
-            sgn, man, exp, bic = output._mpf_
-            print(sgn, bin(man)[2:], exp, bic)
+            # sgn, man, exp, bic = output._mpf_
+            # print(sgn, bin(man)[2:], exp, bic)
 
-            output = str(output)
-            print('out =', output)
-
-            self.write_output(parsers.prettify(output))
+            self.write_output(
+                f'Lagrange Interpolation: \nf({data_z[0]}) = ' +
+                parsers.prettify(output)
+            )
 
 
     def build(self):
