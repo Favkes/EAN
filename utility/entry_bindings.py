@@ -11,10 +11,6 @@ def add_hint(parent: tk.Text,
 def clear_hint(parent: tk.Text,
                hint_text: str = "hint",
                event=None):
-    # print(
-    #     '-clear hint',
-    #     '\n>'+parent.get("1.0", "end-1c"),
-    #     '\n>'+hint_text)
     if parent.get("1.0", "end-1c") == hint_text:
         parent.delete("1.0", "end")
         parent.config(fg="black")

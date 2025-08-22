@@ -58,7 +58,6 @@ class InputGUI(tk.Frame):
             allowed_chars = self.input_field_entry_allowed_chars
         else:
             self.input_field_entry_allowed_chars = allowed_chars
-        # print('--update input filter to:', allowed_chars)
 
         content = self.input_field_entry.get("1.0", "end-1c")
         filtered_content = content.translate(
@@ -79,7 +78,6 @@ class InputGUI(tk.Frame):
 
 
     def update_input_placeholder(self, text: str):
-        # print('--update input placeholder:\n', text)
         self.input_field_entry_clear_hint(None)
         self.input_field_entry_placeholder = text
         entry_bindings.add_hint(
