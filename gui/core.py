@@ -72,12 +72,12 @@ class App:
                                     dims=(45, 2))
 
         self.calculate_button = tk.Button(
-            self.input_frame,
+            self.mode_switch_frame,
             text='Calculate',
             command=self.calculate_button_func
         )
 
-        self.output_box = tk.Text(self.mainframe, width=80, height=10, state='disabled')
+        self.output_box = tk.Text(self.mainframe, width=70, height=10, state='disabled')
 
         # self.parser = lambda s: None
         self.update_mode()
@@ -194,8 +194,12 @@ class App:
         )
         self.input_gui_z.build()
 
+        self.calculate_button_spacer = tk.Frame(self.mode_switch_frame, height=45)
+        self.calculate_button_spacer.grid(
+            row=3, column=0
+        )
         self.calculate_button.grid(
-            row=2, column=0, columnspan=2, pady=10
+            row=4, column=0, columnspan=1, pady=0, sticky='n'
         )
 
         self.output_box.grid(
