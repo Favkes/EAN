@@ -67,6 +67,27 @@ class App:
         self.parser = lambda s: None
 
 
+    def update_mode(self):
+        if self.current_mode.get() not in parser_modes_map.keys():
+            raise Exception(f'Incorrect mode key request: {self.current_mode.get()}')
+
+        self.parser = parser_modes_map[self.current_mode.get()]
+
+        self.input_gui_x.update_input_placeholder(
+            input_placeholder_text_map[self.current_mode.get()]
+        )
+        self.input_gui_x.update_input_filter(
+            input_allowed_chars_map[self.current_mode.get()]
+        )
+
+        self.input_gui_y.update_input_placeholder(
+            input_placeholder_text_map[self.current_mode.get()]
+        )
+        self.input_gui_y.update_input_filter(
+            input_allowed_chars_map[self.current_mode.get()]
+        )
+
+
     def build(self):
         make_focusable(self.mainframe)
         make_focusable(self.mode_switch_frame)
@@ -106,27 +127,6 @@ class App:
             input_placeholder_text_map[self.current_mode.get()]
         )
         self.input_gui_y.build()
-
-
-    def update_mode(self):
-        if self.current_mode.get() not in parser_modes_map.keys():
-            raise Exception(f'Incorrect mode key request: {self.current_mode.get()}')
-
-        self.parser = parser_modes_map[self.current_mode.get()]
-
-        self.input_gui_x.update_input_placeholder(
-            input_placeholder_text_map[self.current_mode.get()]
-        )
-        self.input_gui_x.update_input_filter(
-            input_allowed_chars_map[self.current_mode.get()]
-        )
-
-        self.input_gui_y.update_input_placeholder(
-            input_placeholder_text_map[self.current_mode.get()]
-        )
-        self.input_gui_y.update_input_filter(
-            input_allowed_chars_map[self.current_mode.get()]
-        )
 
 
     def display(self):
