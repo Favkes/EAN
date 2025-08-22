@@ -88,6 +88,8 @@ class App:
             command=lambda : calculate_button_func(self.input_gui_x, self.input_gui_y, self.input_gui_z)
         )
 
+        self.output_box = tk.Text(self.mainframe, width=80, height=10, state='disabled')
+
 
     def update_mode(self):
         if self.current_mode.get() not in parser_modes_map.keys():
@@ -146,7 +148,7 @@ class App:
         )
 
         self.input_frame.grid(
-            row=0, column=13
+            row=0, column=1
         )
         self.input_gui_x.grid(
             row=0, column=0
@@ -176,6 +178,10 @@ class App:
             row=2, column=0, columnspan=2, pady=10
         )
 
+        self.output_box.grid(
+            row=1, column=0, columnspan=2
+        )
+
 
     def display(self):
         self.title_label.pack(anchor='n')
@@ -190,3 +196,4 @@ class App:
         self.input_gui_x.config(bg='blue')
         self.input_gui_y.config(bg='yellow')
         self.mode_switch_frame.config(bg='green')
+        self.output_box.config(bg='magenta')
