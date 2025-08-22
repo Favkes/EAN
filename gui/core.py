@@ -10,6 +10,14 @@ def make_focusable(widget: tk.Widget):
     )
 
 
+def calculate_button_func(input_x: InputGUI, input_y: InputGUI):
+    data_x = input_x.input_field_entry.get("1.0", "end-1c")
+    data_y = input_y.input_field_entry.get("1.0", "end-1c")
+
+    print(data_x)
+    print(data_y)
+
+
 parser_modes_map: dict = {
     'real':         parsers.parse_real,
     'interval':     parsers.parse_interval,
@@ -66,6 +74,12 @@ class App:
         self.input_gui_y = InputGUI(self, self.mainframe, title='Input Y values:')
         self.parser = lambda s: None
 
+        self.calculate_button = tk.Button(
+            self.mainframe,
+            text='Calculate',
+            command=lambda : calculate_button_func(self.input_gui_x, self.input_gui_y)
+        )
+
 
     def update_mode(self):
         if self.current_mode.get() not in parser_modes_map.keys():
@@ -100,7 +114,7 @@ class App:
         )
 
         self.mode_switch_frame.grid(
-            row=1, column=0, sticky='w'
+            row=0, column=0, sticky='w'
         )
         self.mode_switch_A.grid(
             row=0, column=0, sticky='w'
@@ -113,7 +127,7 @@ class App:
         )
 
         self.input_gui_x.grid(
-            row=1, column=1
+            row=0, column=1
         )
         self.input_gui_x.update_input_placeholder(
             input_placeholder_text_map[self.current_mode.get()]
@@ -121,12 +135,16 @@ class App:
         self.input_gui_x.build()
 
         self.input_gui_y.grid(
-            row=1, column=2
+            row=0, column=2
         )
         self.input_gui_y.update_input_placeholder(
             input_placeholder_text_map[self.current_mode.get()]
         )
         self.input_gui_y.build()
+
+        self.calculate_button.grid(
+            row=1, column=1
+        )
 
 
     def display(self):
