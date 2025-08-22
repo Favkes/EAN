@@ -11,6 +11,10 @@ def add_hint(parent: tk.Text,
 def clear_hint(parent: tk.Text,
                hint_text: str = "hint",
                event=None):
+    # print(
+    #     '-clear hint',
+    #     '\n>'+parent.get("1.0", "end-1c"),
+    #     '\n>'+hint_text)
     if parent.get("1.0", "end-1c") == hint_text:
         parent.delete("1.0", "end")
         parent.config(fg="black")
@@ -52,12 +56,8 @@ class InputGUI(tk.Frame):
             height=5,
             width=20
         )
-        self.input_field_entry_placeholder = 'placeholder'
-        self.input_field_entry_clearhint = lambda event: clear_hint(
-            self.input_field_entry,
-            hint_text=self.input_field_entry_placeholder,
-            event=event
-        )
+        self.input_field_entry_placeholder = ''
+        self.input_field_entry_allowed_chars = '0.123,456;789\n'
         self.input_field_entry.bind(
             "<FocusIn>",
             self.input_field_entry_clearhint
@@ -70,21 +70,50 @@ class InputGUI(tk.Frame):
                 event=event
             )
         )
+        self.update_input_filter()
+
+    def input_field_entry_clearhint(self, event):
+        return clear_hint(
+            self.input_field_entry,
+            hint_text=self.input_field_entry_placeholder,
+            event=event
+        )
+
+
+    def update_input_filter(self, allowed_chars: str = None):
+        if allowed_chars is None:
+            allowed_chars = self.input_field_entry_allowed_chars
+        else:
+            self.input_field_entry_allowed_chars = allowed_chars
+        # print('--update input filter to:', allowed_chars)
+
+        content = self.input_field_entry.get("1.0", "end-1c")
+        filtered_content = content.translate(
+            str.maketrans('', '', ''.join(
+                set(content) - set(allowed_chars)
+            ))
+        )
+        self.input_field_entry.delete("1.0", "end")
+        self.input_field_entry.insert("1.0", filtered_content)
+
         self.input_field_entry.bind(
             "<KeyPress>",
             lambda event: input_filter(
                 event=event,
-                allowed_chars='0.123456789[;],\n'
+                allowed_chars=allowed_chars
             )
         )
 
+
     def update_input_placeholder(self, text: str):
+        # print('--update input placeholder:\n', text)
         self.input_field_entry_clearhint(None)
         self.input_field_entry_placeholder = text
         add_hint(
             self.input_field_entry,
             hint_text=self.input_field_entry_placeholder
         )
+
 
     def build(self):
         self.input_field_title.grid(

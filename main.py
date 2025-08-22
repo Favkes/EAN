@@ -13,7 +13,7 @@ def main():
 
     app = App(root)
     app.build()
-    app.debug_mode()
+    # app.debug_mode()
     app.display()
 
 

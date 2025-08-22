@@ -66,7 +66,11 @@ class App:
             'interval': '[0;1],\n[2.34; 5], [6.7, 8]',
             'singleton': '0,\n1,2, 3'
         }
-        self.is_showing_placeholder: bool = True
+        self.input_allowed_chars_map: dict = {
+            'real': '0.123,456;789 \n',
+            'interval': '0.123,456;789[] \n',
+            'singleton': '0.123,456;789 \n'
+        }
 
 
     def build(self):
@@ -106,6 +110,10 @@ class App:
         self.functional_gui.update_input_placeholder(
             self.input_placeholder_text_map[self.current_mode.get()]
         )
+        self.functional_gui.update_input_filter(
+            self.input_allowed_chars_map[self.current_mode.get()]
+        )
+        # self.functional_gui.update_input_filter()
 
 
     def display(self):
