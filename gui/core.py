@@ -185,6 +185,9 @@ class App:
                 data_y,
                 data_z
             )
+            sgn, man, exp, bic = output._mpf_
+            print(sgn, bin(man)[2:], exp, bic)
+
             output = str(output)
             print('out =', output)
 
