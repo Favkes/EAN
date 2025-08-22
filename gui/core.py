@@ -22,9 +22,9 @@ input_placeholder_text_map: dict = {
     'singleton':    '0,\n1,2, 3'
 }
 input_allowed_chars_map: dict = {
-    'real':         '0.123,456;789 \n',
-    'interval':     '0.123,456;789[] \n',
-    'singleton':    '0.123,456;789 \n'
+    'real':         '-0.123,456;789 \n',
+    'interval':     '-0.123,456;789[] \n',
+    'singleton':    '-0.123,456;789 \n'
 }
 input_new_point_placeholder_text_map: dict = {
     'real':         '3.14159265359',
@@ -186,7 +186,9 @@ class App:
                 data_z
             )
             output = str(output)
-            self.write_output(output)
+            print('out =', output)
+
+            self.write_output(parsers.prettify(output))
 
 
     def build(self):
