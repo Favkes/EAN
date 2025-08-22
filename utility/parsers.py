@@ -29,6 +29,20 @@ def parse_interval(s: str) -> list:
     ]
 
 
+def safe_parse(parser_func,
+               data_str: str,
+               error_command = lambda e: print(e),
+               error_message: str = '{}'):
+    try:
+        return parser_func(data_str)
+    except ValueError as e:
+        e = str(e)
+        e = e[:e.rfind("'")]
+        e = e[e.rfind("'"):]
+        error_command(error_message.format(e)+'\'')
+        return None
+
+
 if __name__ == "__main__":
     print(parse_interval(
         "[1;2], [4;5],[7,9] , [11, 10]"

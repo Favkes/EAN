@@ -75,9 +75,10 @@ class App:
                                     dims=(input_gui_x_y_width, 5))
         self.input_gui_z = InputGUI(self,
                                     self.input_frame,
-                                    title='Input the point\'s x:',
+                                    title='Input new point\'s x:',
                                     dims=(input_gui_x_y_width * 2 + 5, 2))
 
+        self.calculate_button_spacer = tk.Frame(self.mode_switch_frame, height=45)
         self.calculate_button = tk.Button(
             self.mode_switch_frame,
             text='Calculate',
@@ -124,32 +125,56 @@ class App:
         )
 
 
-    def calculate_button_func(self):
-        data_x = self.input_gui_x.input_field_entry.get("1.0", "end-1c")
-        data_y = self.input_gui_y.input_field_entry.get("1.0", "end-1c")
-        data_z = self.input_gui_z.input_field_entry.get("1.0", "end-1c")
-
-        data_x = self.parser(data_x)
-        data_y = self.parser(data_y)
-        data_z = self.parser(data_z)
-
-        print('x', data_x)
-        print('y', data_y)
-        print('z', data_z)
-
-        output = algorithm.lagrange(
-            data_x,
-            data_y,
-            data_z
-        )
-
-        output = str(output)
-        print(output)
-
+    def write_output(self, output):
         self.output_box.config(state='normal')
         self.output_box.delete("1.0", "end")
         self.output_box.insert("1.0", output)
         self.output_box.config(state='disabled')
+
+
+    def calculate_button_func(self) -> None:
+        data_x = self.input_gui_x.input_field_entry.get("1.0", "end-1c")
+        data_y = self.input_gui_y.input_field_entry.get("1.0", "end-1c")
+        data_z = self.input_gui_z.input_field_entry.get("1.0", "end-1c")
+
+        if '' in (data_x, data_y, data_z):
+            output = 'Not all fields have been filled.'
+            self.write_output(output)
+            return
+
+        data_x = parsers.safe_parse(
+            parser_func=self.parser,
+            data_str=data_x,
+            error_command=self.write_output,
+            error_message='Incorrect data format in field \'X values\':\n{}'
+        )
+
+        data_y = parsers.safe_parse(
+            parser_func=self.parser,
+            data_str=data_y,
+            error_command=self.write_output,
+            error_message='Incorrect data format in field \'Y values\':\n{}'
+        )
+
+        data_z = parsers.safe_parse(
+            parser_func=self.parser,
+            data_str=data_z,
+            error_command=self.write_output,
+            error_message='Incorrect data format in field \'New Point x\':\n{}'
+        )
+
+        if None not in (data_x, data_y, data_z):
+            print('x', data_x)
+            print('y', data_y)
+            print('z', data_z)
+
+            output = algorithm.lagrange(
+                data_x,
+                data_y,
+                data_z
+            )
+            output = str(output)
+            self.write_output(output)
 
 
     def build(self):
@@ -204,7 +229,6 @@ class App:
         )
         self.input_gui_z.build()
 
-        self.calculate_button_spacer = tk.Frame(self.mode_switch_frame, height=45)
         self.calculate_button_spacer.grid(
             row=3, column=0
         )
