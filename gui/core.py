@@ -26,6 +26,11 @@ input_allowed_chars_map: dict = {
     'interval':     '0.123,456;789[] \n',
     'singleton':    '0.123,456;789 \n'
 }
+input_new_point_placeholder_text_map: dict = {
+    'real':         '3.14159265359',
+    'interval':     '[0;3.14159265359]',
+    'singleton':    '3.14159265359'
+}
 
 
 class App:
@@ -120,7 +125,7 @@ class App:
 
         # Input Z (new point's X)
         self.input_gui_z.update_input_placeholder(
-            input_placeholder_text_map[self.current_mode.get()]
+            input_new_point_placeholder_text_map[self.current_mode.get()]
         )
         self.input_gui_z.update_input_filter(
             input_allowed_chars_map[self.current_mode.get()]
@@ -228,7 +233,7 @@ class App:
             row=1, column=0, columnspan=2, pady=5
         )
         self.input_gui_z.update_input_placeholder(
-            input_placeholder_text_map[self.current_mode.get()]
+            input_new_point_placeholder_text_map[self.current_mode.get()]
         )
         self.input_gui_z.build()
 
