@@ -43,6 +43,13 @@ def safe_parse(parser_func,
         return None
 
 
+def prettify(data: iv.mpf | mp.mpf) -> str:
+    output = str(data)
+    if 'e' not in output:
+        output = f'{output:018s}' + 'e+0'
+    return output
+
+
 if __name__ == "__main__":
     print(parse_interval(
         "[1;2], [4;5],[7,9] , [11, 10]"
