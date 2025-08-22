@@ -52,8 +52,6 @@ class App:
 
         self.functional_gui = InputGUI(self.mainframe)
         self.parser = lambda s: None
-        # self.interval_gui = IntervalGUI(self.mainframe)
-        # self.singleton_gui = SingletonGUI(self.mainframe)
 
         self.parser_modes_map: dict = {
             'real': parsers.parse_real,
@@ -113,7 +111,6 @@ class App:
         self.functional_gui.update_input_filter(
             self.input_allowed_chars_map[self.current_mode.get()]
         )
-        # self.functional_gui.update_input_filter()
 
 
     def display(self):
