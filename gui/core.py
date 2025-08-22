@@ -10,12 +10,14 @@ def make_focusable(widget: tk.Widget):
     )
 
 
-def calculate_button_func(input_x: InputGUI, input_y: InputGUI):
+def calculate_button_func(input_x: InputGUI, input_y: InputGUI, input_z: InputGUI):
     data_x = input_x.input_field_entry.get("1.0", "end-1c")
     data_y = input_y.input_field_entry.get("1.0", "end-1c")
+    data_z = input_z.input_field_entry.get("1.0", "end-1c")
 
     print(data_x)
     print(data_y)
+    print(data_z)
 
 
 parser_modes_map: dict = {
@@ -40,6 +42,8 @@ class App:
         self.root = root_window
         self.mainframe = tk.Frame(self.root)
         self.mainframe.rowconfigure(1, weight=1)
+
+        self.parser = lambda s: None
 
         self.title_label = tk.Label(
             self.root,
@@ -70,14 +74,18 @@ class App:
             command=self.update_mode
         )
 
-        self.input_gui_x = InputGUI(self, self.mainframe, title='Input X values:')
-        self.input_gui_y = InputGUI(self, self.mainframe, title='Input Y values:')
-        self.parser = lambda s: None
+        self.input_frame = tk.Frame(self.mainframe)
+        self.input_gui_x = InputGUI(self, self.input_frame, title='Input X values:')
+        self.input_gui_y = InputGUI(self, self.input_frame, title='Input Y values:')
+        self.input_gui_z = InputGUI(self,
+                                    self.input_frame,
+                                    title='Input the point\'s x:',
+                                    dims=(45, 2))
 
         self.calculate_button = tk.Button(
-            self.mainframe,
+            self.input_frame,
             text='Calculate',
-            command=lambda : calculate_button_func(self.input_gui_x, self.input_gui_y)
+            command=lambda : calculate_button_func(self.input_gui_x, self.input_gui_y, self.input_gui_z)
         )
 
 
@@ -87,6 +95,7 @@ class App:
 
         self.parser = parser_modes_map[self.current_mode.get()]
 
+        # Input X
         self.input_gui_x.update_input_placeholder(
             input_placeholder_text_map[self.current_mode.get()]
         )
@@ -94,10 +103,19 @@ class App:
             input_allowed_chars_map[self.current_mode.get()]
         )
 
+        # Input Y
         self.input_gui_y.update_input_placeholder(
             input_placeholder_text_map[self.current_mode.get()]
         )
         self.input_gui_y.update_input_filter(
+            input_allowed_chars_map[self.current_mode.get()]
+        )
+
+        # Input Z (new point's X)
+        self.input_gui_z.update_input_placeholder(
+            input_placeholder_text_map[self.current_mode.get()]
+        )
+        self.input_gui_z.update_input_filter(
             input_allowed_chars_map[self.current_mode.get()]
         )
 
@@ -108,6 +126,7 @@ class App:
         make_focusable(self.mode_switch_A)
         make_focusable(self.mode_switch_B)
         make_focusable(self.mode_switch_C)
+        make_focusable(self.input_frame)
 
         self.title_label.grid(
             row=0, column=0, sticky='w'
@@ -126,8 +145,11 @@ class App:
             row=2, column=0, sticky='w'
         )
 
+        self.input_frame.grid(
+            row=0, column=13
+        )
         self.input_gui_x.grid(
-            row=0, column=1
+            row=0, column=0
         )
         self.input_gui_x.update_input_placeholder(
             input_placeholder_text_map[self.current_mode.get()]
@@ -135,15 +157,23 @@ class App:
         self.input_gui_x.build()
 
         self.input_gui_y.grid(
-            row=0, column=2
+            row=0, column=1
         )
         self.input_gui_y.update_input_placeholder(
             input_placeholder_text_map[self.current_mode.get()]
         )
         self.input_gui_y.build()
 
+        self.input_gui_z.grid(
+            row=1, column=0, columnspan=2, pady=5
+        )
+        self.input_gui_z.update_input_placeholder(
+            input_placeholder_text_map[self.current_mode.get()]
+        )
+        self.input_gui_z.build()
+
         self.calculate_button.grid(
-            row=1, column=1
+            row=2, column=0, columnspan=2, pady=10
         )
 
 
@@ -156,6 +186,7 @@ class App:
     def debug_mode(self):
         self.mainframe.config(bg='pink')
         self.title_label.config(bg='red')
+        self.input_frame.config(bg='cyan')
         self.input_gui_x.config(bg='blue')
         self.input_gui_y.config(bg='yellow')
         self.mode_switch_frame.config(bg='green')

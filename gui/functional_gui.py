@@ -6,7 +6,8 @@ class InputGUI(tk.Frame):
     def __init__(self,
                  app_core,
                  root_frame: tk.Frame,
-                 title: str = 'Input data:'):
+                 title: str = 'Input data:',
+                 dims: tuple[int, int] = (20, 5)):
         super().__init__(root_frame)
         self.root_frame = root_frame
         self.config(
@@ -21,8 +22,8 @@ class InputGUI(tk.Frame):
         )
         self.input_field_entry = tk.Text(
             self,
-            height=5,
-            width=20,
+            height=dims[1],
+            width=dims[0],
         )
 
         self.input_field_entry_placeholder = ''
