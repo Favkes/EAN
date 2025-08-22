@@ -31,6 +31,8 @@ input_allowed_chars_map: dict = {
 class App:
     def __init__(self, root_window: tk.Tk):
         self.root = root_window
+        self.root.columnconfigure(0, weight=1)
+        # self.root.rowconfigure(0, weight=0)
         self.mainframe = tk.Frame(self.root)
         self.mainframe.rowconfigure(1, weight=1)
 
@@ -178,6 +180,7 @@ class App:
 
 
     def build(self):
+        make_focusable(self.title_label)
         make_focusable(self.mainframe)
         make_focusable(self.mode_switch_frame)
         make_focusable(self.mode_switch_A)
@@ -186,7 +189,7 @@ class App:
         make_focusable(self.input_frame)
 
         self.title_label.grid(
-            row=0, column=0, sticky='w'
+            row=0, column=0, sticky='ew'
         )
 
         self.mode_switch_frame.grid(
@@ -242,7 +245,7 @@ class App:
 
 
     def display(self):
-        self.title_label.pack(anchor='n')
+        self.title_label.pack(fill='both', expand=True)
         self.mainframe.pack(fill='both', expand=True)
         self.root.mainloop()
 
