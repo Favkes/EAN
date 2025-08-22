@@ -64,12 +64,19 @@ class App:
         )
 
         self.input_frame = tk.Frame(self.mainframe)
-        self.input_gui_x = InputGUI(self, self.input_frame, title='Input X values:')
-        self.input_gui_y = InputGUI(self, self.input_frame, title='Input Y values:')
+        input_gui_x_y_width = 25
+        self.input_gui_x = InputGUI(self,
+                                    self.input_frame,
+                                    title='Input X values:',
+                                    dims=(input_gui_x_y_width, 5))
+        self.input_gui_y = InputGUI(self,
+                                    self.input_frame,
+                                    title='Input Y values:',
+                                    dims=(input_gui_x_y_width, 5))
         self.input_gui_z = InputGUI(self,
                                     self.input_frame,
                                     title='Input the point\'s x:',
-                                    dims=(45, 2))
+                                    dims=(input_gui_x_y_width * 2 + 5, 2))
 
         self.calculate_button = tk.Button(
             self.mode_switch_frame,
@@ -77,7 +84,10 @@ class App:
             command=self.calculate_button_func
         )
 
-        self.output_box = tk.Text(self.mainframe, width=70, height=10, state='disabled')
+        self.output_box = tk.Text(self.mainframe,
+                                  width=input_gui_x_y_width * 2 + 27,
+                                  height=10,
+                                  state='disabled')
 
         # self.parser = lambda s: None
         self.update_mode()
@@ -203,7 +213,7 @@ class App:
         )
 
         self.output_box.grid(
-            row=1, column=0, columnspan=2
+            row=1, column=0, columnspan=2, padx=4, sticky='w'
         )
 
 
