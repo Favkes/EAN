@@ -3,7 +3,10 @@ from utility import entry_bindings
 
 
 class InputGUI(tk.Frame):
-    def __init__(self, app_core, root_frame: tk.Frame):
+    def __init__(self,
+                 app_core,
+                 root_frame: tk.Frame,
+                 title: str = 'Input data:'):
         super().__init__(root_frame)
         self.root_frame = root_frame
         self.config(
@@ -14,15 +17,17 @@ class InputGUI(tk.Frame):
 
         self.input_field_title = tk.Label(
             self,
-            text="Input data:"
+            text=title
         )
         self.input_field_entry = tk.Text(
             self,
             height=5,
-            width=20
+            width=20,
         )
+
         self.input_field_entry_placeholder = ''
         self.input_field_entry_allowed_chars = '0.123,456;789\n'
+
         self.input_field_entry.bind(
             "<FocusIn>",
             self.input_field_entry_clear_hint
@@ -35,6 +40,7 @@ class InputGUI(tk.Frame):
                 event=event
             )
         )
+
         self.update_input_filter()
 
 

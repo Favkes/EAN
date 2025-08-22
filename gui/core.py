@@ -10,6 +10,23 @@ def make_focusable(widget: tk.Widget):
     )
 
 
+parser_modes_map: dict = {
+    'real':         parsers.parse_real,
+    'interval':     parsers.parse_interval,
+    'singleton':    parsers.parse_singleton
+}
+input_placeholder_text_map: dict = {
+    'real':         '0,\n1,2, 3',
+    'interval':     '[0;1],\n[2.34; 5], [6.7, 8]',
+    'singleton':    '0,\n1,2, 3'
+}
+input_allowed_chars_map: dict = {
+    'real':         '0.123,456;789 \n',
+    'interval':     '0.123,456;789[] \n',
+    'singleton':    '0.123,456;789 \n'
+}
+
+
 class App:
     def __init__(self, root_window: tk.Tk):
         self.root = root_window
@@ -45,25 +62,9 @@ class App:
             command=self.update_mode
         )
 
-        self.functional_gui = InputGUI(self, self.mainframe)
+        self.input_gui_x = InputGUI(self, self.mainframe, title='Input X values:')
+        self.input_gui_y = InputGUI(self, self.mainframe, title='Input Y values:')
         self.parser = lambda s: None
-
-        self.parser_modes_map: dict = {
-            'real': parsers.parse_real,
-            'interval': parsers.parse_interval,
-            'singleton': parsers.parse_singleton
-        }
-
-        self.input_placeholder_text_map: dict = {
-            'real': '0,\n1,2, 3',
-            'interval': '[0;1],\n[2.34; 5], [6.7, 8]',
-            'singleton': '0,\n1,2, 3'
-        }
-        self.input_allowed_chars_map: dict = {
-            'real': '0.123,456;789 \n',
-            'interval': '0.123,456;789[] \n',
-            'singleton': '0.123,456;789 \n'
-        }
 
 
     def build(self):
@@ -90,27 +91,41 @@ class App:
             row=2, column=0, sticky='w'
         )
 
-        self.functional_gui.grid(
+        self.input_gui_x.grid(
             row=1, column=1
         )
-        self.functional_gui.update_input_placeholder(
-            self.input_placeholder_text_map[self.current_mode.get()]
+        self.input_gui_x.update_input_placeholder(
+            input_placeholder_text_map[self.current_mode.get()]
         )
+        self.input_gui_x.build()
 
-        self.functional_gui.build()
+        self.input_gui_y.grid(
+            row=1, column=2
+        )
+        self.input_gui_y.update_input_placeholder(
+            input_placeholder_text_map[self.current_mode.get()]
+        )
+        self.input_gui_y.build()
 
 
     def update_mode(self):
-        if self.current_mode.get() not in self.parser_modes_map.keys():
+        if self.current_mode.get() not in parser_modes_map.keys():
             raise Exception(f'Incorrect mode key request: {self.current_mode.get()}')
 
-        self.parser = self.parser_modes_map[self.current_mode.get()]
+        self.parser = parser_modes_map[self.current_mode.get()]
 
-        self.functional_gui.update_input_placeholder(
-            self.input_placeholder_text_map[self.current_mode.get()]
+        self.input_gui_x.update_input_placeholder(
+            input_placeholder_text_map[self.current_mode.get()]
         )
-        self.functional_gui.update_input_filter(
-            self.input_allowed_chars_map[self.current_mode.get()]
+        self.input_gui_x.update_input_filter(
+            input_allowed_chars_map[self.current_mode.get()]
+        )
+
+        self.input_gui_y.update_input_placeholder(
+            input_placeholder_text_map[self.current_mode.get()]
+        )
+        self.input_gui_y.update_input_filter(
+            input_allowed_chars_map[self.current_mode.get()]
         )
 
 
@@ -123,5 +138,6 @@ class App:
     def debug_mode(self):
         self.mainframe.config(bg='pink')
         self.title_label.config(bg='red')
-        self.functional_gui.config(bg='blue')
+        self.input_gui_x.config(bg='blue')
+        self.input_gui_y.config(bg='yellow')
         self.mode_switch_frame.config(bg='green')
