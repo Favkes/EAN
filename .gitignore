@@ -1,2 +1,12 @@
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
 .idea
 .venv
+
+docs/_build/doctrees/
+docs/_build/.doctrees/
+docs/_build/html/.buildinfo
