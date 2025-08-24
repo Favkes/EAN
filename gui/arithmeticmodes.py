@@ -4,10 +4,15 @@ Configuration maps for input parsing and placeholders.
 This module holds constants used to configure `gui.core.App`'s
 entry fields' parsers, placeholders and filter masks for all three
 arithmetic modes.
-    - `parser_modes_mao`: maps mode names to parsing functions
-    - `input_placeholder_text_map`: placeholder text for input fields
-    - `input_allowed_chars_map`: characters allowed inside input fields
-    - `input_new_point_placeholder_text_map`: placeholder text for new point's input field
+
+    - ``parser_modes_map``:
+        Maps mode names to parsing functions
+    - ``input_placeholder_text_map``:
+        Placeholder text for input fields
+    - ``input_allowed_chars_map``:
+        Characters allowed inside input fields
+    - ``input_new_point_placeholder_text_map``:
+        Placeholder text for new point's input field
 """
 
 
