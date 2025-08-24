@@ -180,7 +180,12 @@ class App:
             # print('y', data_y)
             # print('z', data_z)
 
-            output = algorithm.lagrange(
+            output1 = algorithm.lagrange(
+                data_x,
+                data_y,
+                data_z
+            )
+            output2 = algorithm.neville(
                 data_x,
                 data_y,
                 data_z
@@ -189,8 +194,8 @@ class App:
             # print(sgn, bin(man)[2:], exp, bic)
 
             self.write_output(
-                f'Lagrange Interpolation: \nf({data_z[0]}) = ' +
-                parsers.prettify(output)
+                f'Lagrange Interpolation: \n{parsers.prettify(output1)}\n'
+                f'Neville Interpolation: \n{parsers.prettify(output2)}'
             )
 
 
