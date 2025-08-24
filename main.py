@@ -1,7 +1,8 @@
 """
 Main running file of the app.
 
-Contains the definition of the app's root window and initialization of core.App, that further handles everything.
+Contains the definition of the app's root window and initialization of core.App, that further handles
+all application processes.
 """
 
 
@@ -11,7 +12,7 @@ import tkinter as tk
 
 def main():
     """
-
+    Initialize the root window and gui.App, build the App and display inside the window.
 
     :return: None
     """
