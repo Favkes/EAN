@@ -3,16 +3,12 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-EAN: Final project documentation
+EAN-NevLag24 Official Project Docs
 ================================
-
-.. autoclass:: App
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-   core
+   main
+   gui/index
