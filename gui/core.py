@@ -1,12 +1,36 @@
+"""
+Core application module for the GUI-based multiple-arithmetic interpolation project for EAN on CS-Sem2.
+
+This module defines the main App class that handles the GUI structure and properties, user input,
+arithmetic modes, and computation using interpolation algorithms. It also holds a utility function `make_focusable()`.
+
+Classes:
+    App: Main project structure and event manager for inputs, computation and output.
+
+Functions:
+    make_focusable(widget): Makes any Tkinter widget focusable by clicking on it.
+"""
+
+
 import tkinter as tk
 from gui.functional_gui import InputGUI
-from utility import parsers
 from utility import algorithm
 from gui.arithmeticmodes import *
 
 
+def make_focusable(widget: tk.Widget) -> None:
+    """
+    Make any tkinter widget focusable.
 
-def make_focusable(widget: tk.Widget):
+    Makes any Tkinter widget focusable by clicking on any area that shows it as the topmost layer.
+    Used for allowing defocusing of entry widgets by clicking outside of them.
+
+    :param widget: Any tkinter widget
+    :type widget: tk.Widget
+    :return: None
+    :rtype: NoneType
+    """
+
     widget.bind(
         '<Button-1>',
         lambda event: event.widget.master.focus_set()
@@ -14,7 +38,23 @@ def make_focusable(widget: tk.Widget):
 
 
 class App:
+    """
+    The main class managing all components of the project, used as the main project structure.
+
+    This class manages all pieces of the project and connects them into a working structure.
+    It initializes the UI components, structures them correctly within the root window,
+    manages writing outputs and handling user inputs such as button clicks and entry field interactions.
+    """
+
     def __init__(self, root_window: tk.Tk):
+        """
+        Initialize a core.App instance.
+        All of the app's tkinter components are initialized in here as well.
+
+        :param root_window: Reference to the root window that core.App is supposed to be contained in.
+        :type root_window: tk.Tk
+        """
+
         self.root = root_window
         self.root.columnconfigure(0, weight=1)
         # self.root.rowconfigure(0, weight=0)
@@ -82,6 +122,18 @@ class App:
 
 
     def update_mode(self):
+        """
+        Update the arithmetic mode for the program's computations.
+
+        This method updates the parser and modifies the input placeholders,
+        as well as allowed character masks for all relevant input fields (X, Y, Z)
+        according to the currently selected mode.
+
+        :raises Exception: If the current mode key is not valid.
+        :return: None
+        :rtype: NoneType
+        """
+
         if self.current_mode.get() not in parser_modes_map.keys():
             raise Exception(f'Incorrect mode key request: {self.current_mode.get()}')
 
@@ -112,7 +164,20 @@ class App:
         )
 
 
-    def write_output(self, output):
+    def write_output(self, output: str):
+        """
+        Overwrite all contents of the output text widget with the given string.
+
+        This method clears any existing text in `self.output_box` and inserts
+        the new content. The widget is temporarily set to editable and then
+        returned to the disabled state to prevent user interaction.
+
+        :param output: The string to display in the output text widget
+        :type output: str
+        :return: None
+        :rtype: NoneType
+        """
+
         self.output_box.config(state='normal')
         self.output_box.delete("1.0", "end")
         self.output_box.insert("1.0", output)
@@ -120,6 +185,22 @@ class App:
 
 
     def calculate_button_func(self) -> None:
+        """
+        Process input data from entry fields, perform interpolation algorithms, and display results.
+
+        This method:
+            1. Retrieves values from X, Y and Z entry fields.
+            2. Validates that all fields are filled and correctly formatted.
+            3. Checks that X and Y lists have the same length and that X contains no duplicate values.
+            4. Performs Lagrange and Neville interpolations and calculates Lagrange polynomial coefficients.
+            5. Outputs the results using `self.write_output()`.
+
+        :return: None
+        :rtype: NoneType
+        :raises Exception: If the input data cannot be parsed correctly.
+        :side effects: Updates the contents of the output text widget (`self.output_box`).
+        """
+
         data_x = self.input_gui_x.input_field_entry.get("1.0", "end-1c")
         data_y = self.input_gui_y.input_field_entry.get("1.0", "end-1c")
         data_z = self.input_gui_z.input_field_entry.get("1.0", "end-1c")
@@ -195,6 +276,14 @@ class App:
 
 
     def build(self):
+        """
+        Structure the contents of the app using tkinter's grid geometry manager,
+        set correct properties for specific widgets.
+
+        :return: None
+        :rtype: NoneType
+        """
+
         make_focusable(self.title_label)
         make_focusable(self.mainframe)
         make_focusable(self.mode_switch_frame)
@@ -260,12 +349,31 @@ class App:
 
 
     def display(self):
+        """
+        Place all the app's elements in the root window and run the window.
+
+        :return: None
+        :rtype: NoneType
+        """
+
         self.title_label.pack(fill='both', expand=True)
         self.mainframe.pack(fill='both', expand=True)
         self.root.mainloop()
 
 
     def debug_mode(self):
+        """
+        Enable debug mode by coloring the backgrounds of key widgets
+        to clearly show the app layout.
+
+        This method must be called explicitly to activate the debug mode.
+        It changes the background colors of main UI elements for debugging purposes.
+
+        :return: None
+        :rtype: NoneType
+        :side effects: Updates the background colors of multiple (but not all) widgets.
+        """
+
         self.mainframe.config(bg='pink')
         self.title_label.config(bg='red')
         self.input_frame.config(bg='cyan')
