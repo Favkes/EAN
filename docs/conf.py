@@ -21,6 +21,14 @@ release = '1.0.0'
 
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon']
 
+autodoc_mock_imports = [
+    "tkinter",
+    "gui.functional_gui",
+    "utility.algorithm",
+    # add any other imports that break on the server
+]
+
+
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
