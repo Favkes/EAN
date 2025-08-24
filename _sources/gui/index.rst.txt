@@ -7,3 +7,4 @@ gui package
     :caption: Contents:
 
     core
+    arithmeticmodes
