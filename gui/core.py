@@ -175,6 +175,16 @@ class App:
                               f'x.size() = {len(data_x)}, y.size() = {len(data_y)}')
             return
 
+        # size assertion (is sure to be true btw but it's there for convention's sake)
+        assert len(data_x) > 0
+        assert len(data_y) > 0
+        assert len(data_z) > 0
+
+        # Duplicate check
+        if len(set(data_x)) < len(data_x):
+            self.write_output('The X values contain duplicates, which is forbidden.')
+            return
+
         if None not in (data_x, data_y, data_z):
             # print('x', data_x)
             # print('y', data_y)
