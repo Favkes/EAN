@@ -1,3 +1,18 @@
+"""
+Core algorithms module containing all numeric functions performed by the application.
+
+This module contains the three algorithms performed by the application:
+    - `lagrange()`:
+        Lagrange's Polynomial Interpolation algorithm.
+    - `neville()`:
+        Neville's Interpolation algorithm.
+    - `lagrange_coefficients()`:
+        Computes Lagrange Interpolation Polynomial's coefficients.
+
+All three functions are constructed to work explicitly on mpmath floating point numbers and floating point intervals.
+"""
+
+
 from mpmath import iv, mp
 
 

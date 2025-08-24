@@ -12,3 +12,4 @@ EAN-NevLag24 Official Project Docs
 
    main
    gui/index
+   utility/index
