@@ -35,7 +35,7 @@ def neville(x, y, z) -> mp.mpf | iv.mpf:
     return y_[0]
 
 
-def lagrange_coefficients(x, y) -> list[mp.mpf | iv.mpf]:
+def lagrange_coefficients(x, y) -> list:
     dtype = type(x[0])
     out = [dtype(0)] * len(x)
 
