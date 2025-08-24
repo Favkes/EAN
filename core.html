@@ -32,8 +32,144 @@
 
           <div class="body" role="main">
             
-  <section id="core-module">
-<h1>Core Module<a class="headerlink" href="#core-module" title="Link to this heading">¶</a></h1>
+  <section id="module-gui.core">
+<span id="core-module"></span><h1>Core Module<a class="headerlink" href="#module-gui.core" title="Link to this heading">¶</a></h1>
+<p>Core application module for the GUI-based multiple-arithmetic interpolation project for EAN on CS-Sem2.</p>
+<p>This module defines the main App class that handles the GUI structure and properties, user input,
+arithmetic modes, and computation using interpolation algorithms. It also holds a utility function <cite>make_focusable()</cite>.</p>
+<dl class="simple">
+<dt>Classes:</dt><dd><p>App: Main project structure and event manager for inputs, computation and output.</p>
+</dd>
+<dt>Functions:</dt><dd><p>make_focusable(widget): Makes any Tkinter widget focusable by clicking on it.</p>
+</dd>
+</dl>
+<dl class="py class">
+<dt class="sig sig-object py" id="gui.core.App">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gui.core.</span></span><span class="sig-name descname"><span class="pre">App</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root_window</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tkinter.Tk</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.core.App" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>The main class managing all components of the project, used as the main project structure.</p>
+<p>This class manages all pieces of the project and connects them into a working structure.
+It initializes the UI components, structures them correctly within the root window,
+manages writing outputs and handling user inputs such as button clicks and entry field interactions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.core.App.build">
+<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.core.App.build" title="Link to this definition">¶</a></dt>
+<dd><p>Structure the contents of the app using tkinter’s grid geometry manager,
+set correct properties for specific widgets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.core.App.calculate_button_func">
+<span class="sig-name descname"><span class="pre">calculate_button_func</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gui.core.App.calculate_button_func" title="Link to this definition">¶</a></dt>
+<dd><p>Process input data from entry fields, perform interpolation algorithms, and display results.</p>
+<dl class="simple">
+<dt>This method:</dt><dd><ol class="arabic simple">
+<li><p>Retrieves values from X, Y and Z entry fields.</p></li>
+<li><p>Validates that all fields are filled and correctly formatted.</p></li>
+<li><p>Checks that X and Y lists have the same length and that X contains no duplicate values.</p></li>
+<li><p>Performs Lagrange and Neville interpolations and calculates Lagrange polynomial coefficients.</p></li>
+<li><p>Outputs the results using <cite>self.write_output()</cite>.</p></li>
+</ol>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>Exception</strong> – If the input data cannot be parsed correctly.</p>
+</dd>
+<dt class="field-odd">Side effects<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Updates the contents of the output text widget (<cite>self.output_box</cite>).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.core.App.debug_mode">
+<span class="sig-name descname"><span class="pre">debug_mode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.core.App.debug_mode" title="Link to this definition">¶</a></dt>
+<dd><p>Enable debug mode by coloring the backgrounds of key widgets
+to clearly show the app layout.</p>
+<p>This method must be called explicitly to activate the debug mode.
+It changes the background colors of main UI elements for debugging purposes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Side effects<span class="colon">:</span></dt>
+<dd class="field-even"><p>Updates the background colors of multiple (but not all) widgets.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.core.App.display">
+<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.core.App.display" title="Link to this definition">¶</a></dt>
+<dd><p>Place all the app’s elements in the root window and run the window.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.core.App.update_mode">
+<span class="sig-name descname"><span class="pre">update_mode</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gui.core.App.update_mode" title="Link to this definition">¶</a></dt>
+<dd><p>Update the arithmetic mode for the program’s computations.</p>
+<p>This method updates the parser and modifies the input placeholders,
+as well as allowed character masks for all relevant input fields (X, Y, Z)
+according to the currently selected mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Exception</strong> – If the current mode key is not valid.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gui.core.App.write_output">
+<span class="sig-name descname"><span class="pre">write_output</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gui.core.App.write_output" title="Link to this definition">¶</a></dt>
+<dd><p>Overwrite all contents of the output text widget with the given string.</p>
+<p>This method clears any existing text in <cite>self.output_box</cite> and inserts
+the new content. The widget is temporarily set to editable and then
+returned to the disabled state to prevent user interaction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>output</strong> (<em>str</em>) – The string to display in the output text widget</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="gui.core.make_focusable">
+<span class="sig-prename descclassname"><span class="pre">gui.core.</span></span><span class="sig-name descname"><span class="pre">make_focusable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">widget</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tkinter.Widget</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#gui.core.make_focusable" title="Link to this definition">¶</a></dt>
+<dd><p>Make any tkinter widget focusable.</p>
+<p>Makes any Tkinter widget focusable by clicking on any area that shows it as the topmost layer.
+Used for allowing defocusing of entry widgets by clicking outside of them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>widget</strong> (<em>tk.Widget</em>) – Any tkinter widget</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
 
@@ -64,7 +200,11 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Core Module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Core Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#gui.core.App"><code class="docutils literal notranslate"><span class="pre">App</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gui.core.make_focusable"><code class="docutils literal notranslate"><span class="pre">make_focusable()</span></code></a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">
