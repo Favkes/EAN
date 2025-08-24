@@ -12,8 +12,8 @@ sys.path.insert(0, os.path.abspath('..'))  # add project root to Python path
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'EAN-NevLag'
-copyright = '2025, Jan Bączkowski'
-author = 'Jan Bączkowski'
+copyright = '2025, Favkes'
+author = 'Favkes'
 release = '1.0.0'
 
 # -- General configuration ---------------------------------------------------
