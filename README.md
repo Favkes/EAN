@@ -14,7 +14,10 @@ allowing for a run-and-go demo presentation.
 
 ###
 
-## Official Site
+## Official Docs:
+
+[![Build and Deploy Sphinx Docs](https://github.com/Favkes/EAN/actions/workflows/sphinx.yml/badge.svg)](https://github.com/Favkes/EAN/actions/workflows/sphinx.yml)
+
 [![Documentation Status](https://img.shields.io/badge/docs-latest-blue.svg)](https://favkes.github.io/EAN/)
 
 ###
