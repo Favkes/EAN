@@ -28,7 +28,6 @@ def make_focusable(widget: tk.Widget) -> None:
     :param widget: Any tkinter widget
     :type widget: tk.Widget
     :return: None
-    :rtype: NoneType
     """
 
     widget.bind(
@@ -131,7 +130,6 @@ class App:
 
         :raises Exception: If the current mode key is not valid.
         :return: None
-        :rtype: NoneType
         """
 
         if self.current_mode.get() not in parser_modes_map.keys():
@@ -175,7 +173,6 @@ class App:
         :param output: The string to display in the output text widget
         :type output: str
         :return: None
-        :rtype: NoneType
         """
 
         self.output_box.config(state='normal')
@@ -196,7 +193,6 @@ class App:
             5. Outputs the results using `self.write_output()`.
 
         :return: None
-        :rtype: NoneType
         :raises Exception: If the input data cannot be parsed correctly.
         :side effects: Updates the contents of the output text widget (`self.output_box`).
         """
@@ -281,7 +277,6 @@ class App:
         set correct properties for specific widgets.
 
         :return: None
-        :rtype: NoneType
         """
 
         make_focusable(self.title_label)
@@ -353,7 +348,6 @@ class App:
         Place all the app's elements in the root window and run the window.
 
         :return: None
-        :rtype: NoneType
         """
 
         self.title_label.pack(fill='both', expand=True)
@@ -370,7 +364,6 @@ class App:
         It changes the background colors of main UI elements for debugging purposes.
 
         :return: None
-        :rtype: NoneType
         :side effects: Updates the background colors of multiple (but not all) widgets.
         """
 
