@@ -70,6 +70,19 @@ def prettify(data: iv.mpf | mp.mpf) -> str:
 
         return output
 
+    elif isinstance(data, list) and \
+        (isinstance(data[0], mp.mpf) or
+         isinstance(data[0], iv.mpf)):
+        output = '[\n'
+        for val in data:
+            val = prettify(val)
+            if val.startswith('T'):
+                return 'Type error at utility.parsers.prettify():\n'+str(type(data))+' is an incorrect type.'
+
+            output += f' {val},\n'
+        output = output[:-2] + '\n]'
+        return output
+
     else: return 'Type error at utility.parsers.prettify():\n'+str(type(data))+' is an incorrect type.'
 
 
