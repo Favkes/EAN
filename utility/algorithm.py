@@ -23,6 +23,7 @@ def lagrange(x, y, z) -> mp.mpf | iv.mpf:
 
 def neville(x, y, z) -> mp.mpf | iv.mpf:
     y_data = y.copy()
+    z = z[0]
 
     for i in range(1, len(x)):
         for j in range(len(x) - i):
