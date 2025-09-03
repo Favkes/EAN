@@ -37,7 +37,26 @@ def make_focusable(widget: tk.Widget) -> None:
 
 
 def allow_copying_contents(widget: tk.Widget) -> None:
+    """
+        Make any tkinter widget allow copying it's contents to the clipboard
+        (if it has any).
+
+        Makes any Tkinter widget support the Ctrl+C keybind widely used as
+        "Copy to clipboard".
+
+        :param widget: Any tkinter widget
+        :type widget: tk.Widget
+        :return: None
+    """
     def copying_func(event=None):
+        """
+        Copy contents of the widget passed into allow_copying_contents().
+
+        Copies (if possible) the contents of the specified widget into
+        user's system clipboard.
+        :param event: tk.Event
+        :return: None
+        """
         try:
             event.widget.master.event_generate("<<Copy>>")
         except:
@@ -46,8 +65,29 @@ def allow_copying_contents(widget: tk.Widget) -> None:
 
 
 def allow_pasting_in(widget: tk.Widget, allowed_chars: str = None) -> None:
+    """
+        Make any tkinter widget allow pasting in content to inside it from
+        the clipboard.
+
+        Makes any Tkinter widget support the Ctrl+V keybind widely used as
+        "Paste from clipboard".
+
+        :param widget: Any tkinter widget
+        :type widget: tk.Widget
+        :param allowed_chars: A string of characters allowed in the widget
+        :type allowed_chars: str
+        :return: None
+    """
     def pasting_func(event = None):
-        print('pipi')
+        """
+            Paste contents of the clipboard to inside the widget passed into
+            allow_pasting_in().
+
+            Pastes in (if possible) the contents of user's system clipboard,
+            and filters the data with the allowed_chars mask, if specified.
+        :param event: tk.Event
+        :return: None
+        """
         try:
             clipboard_content = widget.clipboard_get()
             if allowed_chars is not None:
