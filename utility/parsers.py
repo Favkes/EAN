@@ -7,15 +7,15 @@ safely embedding these parsing functions to error-proof the application. There a
 for formatting the output data right before writing it to the output widget.
 
 Functions:
-    parse_real(s): Converts numeric array string into an mp.mpf list
-    parse_singleton(s): Converts numeric array string into a list of iv.mpf singleton intervals `[a; a]`
-    parse_interval(s): Converts numeric interval array string into a list of iv.mpf intervals `[a; b]`
-    safe_parse(parser_func, data_str, error_command, error_message): Embeds execution of the parser_func function
+    - ``parse_real(s)``: Converts numeric array string into an mp.mpf list
+    - ``parse_singleton(s)``: Converts numeric array string into a list of iv.mpf singleton intervals `[a; a]`
+    - ``parse_interval(s)``: Converts numeric interval array string into a list of iv.mpf intervals `[a; b]`
+    - ``safe_parse(parser_func, data_str, error_command, error_message)``: Embeds execution of the parser_func function
     in an exception block, allowing for configurable error feedback display directly to the output widget.
-    sci_str(x, prec): Converts an mp.mpf number into a numeric string in the scientific format, with defined
+    - ``sci_str(x, prec)``: Converts an mp.mpf number into a numeric string in the scientific format, with defined
     digital precision.
-    prettify(data): Formats the output data of any of the 3 algorithms implemented in the project into human-readable
-    text ready to be printed in the output widget.
+    - ``prettify(data)``: Formats the output data of any of the 3 algorithms implemented in the project into
+    human-readable text ready to be printed in the output widget.
 """
 
 
