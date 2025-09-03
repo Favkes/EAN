@@ -7,9 +7,9 @@ EAN-NevLag24 Official Project Docs
 ================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :maxdepth: 2
+    :caption: Contents:
 
-   main
-   gui/index
-   utility/index
+    main
+    gui/index
+    utility/index
