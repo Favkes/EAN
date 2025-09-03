@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 EAN-NevLag24 Official Project Docs
-================================
+==================================
 
 .. toctree::
     :maxdepth: 2
