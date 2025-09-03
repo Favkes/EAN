@@ -3,7 +3,6 @@ from mpmath import iv, mp
 
 iv.prec = 64
 mp.prec = 64
-MAKE_FLOATY = False     # Formats all numbers with trailing zeros and adds e+0 if there's no exponent.
 
 
 def parse_real(s: str) -> list[float]:
@@ -44,29 +43,40 @@ def safe_parse(parser_func,
         return None
 
 
-def always_look_like_float(strnum: str) -> str:
-    if 'e' not in strnum:
-        return f'{strnum:018s}' + 'e+0'
-    return strnum
+def sci_str(x, prec: int = 18):
+    """
+    Convert mpmath.mpf to string in the form 1.234E+0001
+    """
+    # mantissa and exponent (in base 10)
+
+    if x == 0:
+        return "0." + '0'*prec + 'E+0000'
+
+    exp = mp.floor(mp.log10(abs(x))) if x != 0 else 0
+    mant = x / mp.power(10, exp)
+
+    # round mantissa to desired digits
+    mant_str = mp.nstr(mant, n=prec + 1, strip_zeros=False)
+
+    # format exponent padded to 4 digits with sign
+    exp_str = f"{int(exp):+05d}"
+
+    return f"{mant_str}E{exp_str}"
 
 
 def prettify(data: iv.mpf | mp.mpf) -> str:
     if isinstance(data, mp.mpf):
-        output = str(data)
-
-        if MAKE_FLOATY:
-            output = always_look_like_float(output)
-
+        output = sci_str(data)
         return output
 
     elif isinstance(data, iv.mpf):
         output = str(data)
 
-        if MAKE_FLOATY:
-            outA, outB = output[1:-1].split(', ')
-            outA = always_look_like_float(outA)
-            outB = always_look_like_float(outB)
-            output = f'[{outA}, {outB}]'
+        outA, outB = output[1:-1].split(', ')
+        outA, outB = mp.mpf(outA), mp.mpf(outB)
+        outA = sci_str(outA)
+        outB = sci_str(outB)
+        output = f'[{outA}, {outB}]'
 
         return output
 
