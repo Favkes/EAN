@@ -266,8 +266,8 @@ class App:
 
             self.write_output(
                 f'Lagrange Interpolation: \n{parsers.prettify(output1)}\n'
-                f'Lagrange Polynomial Coefficients: \n{parsers.prettify(output3)}\n'
-                f'Neville Interpolation: \n{parsers.prettify(output2)}'
+                f'Neville Interpolation: \n{parsers.prettify(output2)}\n'
+                f'Lagrange Polynomial Coefficients: \n{parsers.prettify(output3)}'
             )
 
 
