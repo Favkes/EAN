@@ -36,6 +36,33 @@ def make_focusable(widget: tk.Widget) -> None:
     )
 
 
+def allow_copying_contents(widget: tk.Widget) -> None:
+    def copying_func(event=None):
+        try:
+            event.widget.master.event_generate("<<Copy>>")
+        except:
+            pass
+    widget.bind("<Control-c>", copying_func)
+
+
+def allow_pasting_in(widget: tk.Widget, allowed_chars: str = None) -> None:
+    def pasting_func(event = None):
+        print('pipi')
+        try:
+            clipboard_content = widget.clipboard_get()
+            if allowed_chars is not None:
+                clipboard_content = clipboard_content.translate(
+                    str.maketrans('', '', ''.join(
+                        set(clipboard_content) - set(allowed_chars)
+                    ))
+                )
+            widget.insert(tk.INSERT, clipboard_content)
+        except tk.TclError:
+            pass
+        return "break"
+    widget.bind("<Control-v>", pasting_func)
+
+
 class App:
     """
     The main class managing all components of the project, used as the main project structure.
@@ -287,6 +314,15 @@ class App:
         make_focusable(self.mode_switch_B)
         make_focusable(self.mode_switch_C)
         make_focusable(self.input_frame)
+        allow_copying_contents(self.input_gui_x.input_field_entry)
+        allow_copying_contents(self.input_gui_y.input_field_entry)
+        allow_copying_contents(self.input_gui_z.input_field_entry)
+        allow_pasting_in(self.input_gui_x.input_field_entry,
+                         self.input_gui_x.input_field_entry_allowed_chars)
+        allow_pasting_in(self.input_gui_y.input_field_entry,
+                         self.input_gui_y.input_field_entry_allowed_chars)
+        allow_pasting_in(self.input_gui_z.input_field_entry,
+                         self.input_gui_z.input_field_entry_allowed_chars)
 
         self.title_label.grid(
             row=0, column=0, sticky='ew'
