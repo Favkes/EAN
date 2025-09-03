@@ -1,5 +1,5 @@
-gui
-===
+gui (package)
+=============
 
 
 .. toctree::
