@@ -8,3 +8,4 @@ gui
 
     core
     arithmeticmodes
+    functional_gui

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Parsers &#8212; EAN-NevLag 1.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=8d563738"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Entry Bindings" href="entry_bindings.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-utility.parsers">
+<span id="parsers"></span><h1>Parsers<a class="headerlink" href="#module-utility.parsers" title="Link to this heading">¶</a></h1>
+<p>Data extraction module containing all the parsing functions used to convert user input into actual numeric data.</p>
+<p>This module contains several parsing and formatting functions used in the gui.core module to convert
+string numbers into actual mpmath numeric objects for all three arithmetic modes, as well as a means of
+safely embedding these parsing functions to error-proof the application. There are also functions used
+for formatting the output data right before writing it to the output widget.</p>
+<dl class="simple">
+<dt>Functions:</dt><dd><p>parse_real(s): Converts numeric array string into an mp.mpf list
+parse_singleton(s): Converts numeric array string into a list of iv.mpf singleton intervals <cite>[a; a]</cite>
+parse_interval(s): Converts numeric interval array string into a list of iv.mpf intervals <cite>[a; b]</cite>
+safe_parse(parser_func, data_str, error_command, error_message): Embeds execution of the parser_func function
+in an exception block, allowing for configurable error feedback display directly to the output widget.
+sci_str(x, prec): Converts an mp.mpf number into a numeric string in the scientific format, with defined
+digital precision.
+prettify(data): Formats the output data of any of the 3 algorithms implemented in the project into human-readable
+text ready to be printed in the output widget.</p>
+</dd>
+</dl>
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.parsers.parse_interval">
+<span class="sig-prename descclassname"><span class="pre">utility.parsers.</span></span><span class="sig-name descname"><span class="pre">parse_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#utility.parsers.parse_interval" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.parsers.parse_real">
+<span class="sig-prename descclassname"><span class="pre">utility.parsers.</span></span><span class="sig-name descname"><span class="pre">parse_real</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#utility.parsers.parse_real" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.parsers.parse_singleton">
+<span class="sig-prename descclassname"><span class="pre">utility.parsers.</span></span><span class="sig-name descname"><span class="pre">parse_singleton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#utility.parsers.parse_singleton" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.parsers.prettify">
+<span class="sig-prename descclassname"><span class="pre">utility.parsers.</span></span><span class="sig-name descname"><span class="pre">prettify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ivmpf</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">mpf</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#utility.parsers.prettify" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.parsers.safe_parse">
+<span class="sig-prename descclassname"><span class="pre">utility.parsers.</span></span><span class="sig-name descname"><span class="pre">safe_parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_str:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_command=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_message:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'{}'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utility.parsers.safe_parse" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.parsers.sci_str">
+<span class="sig-prename descclassname"><span class="pre">utility.parsers.</span></span><span class="sig-name descname"><span class="pre">sci_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">18</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utility.parsers.sci_str" title="Link to this definition">¶</a></dt>
+<dd><p>Convert mpmath.mpf to string in the form 1.234E+0001</p>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">EAN-NevLag</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../main.html">Main Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gui/index.html">gui</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">utility (package)</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="algorithm.html">Algorithm Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="entry_bindings.html">Entry Bindings</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Parsers</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">utility (package)</a><ul>
+      <li>Previous: <a href="entry_bindings.html" title="previous chapter">Entry Bindings</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Favkes.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/utility/parsers.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
