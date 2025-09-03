@@ -36,7 +36,7 @@
 <span id="parsers"></span><h1>Parsers<a class="headerlink" href="#module-utility.parsers" title="Link to this heading">¶</a></h1>
 <p>Data extraction module containing all the parsing functions used to convert user input into actual numeric data.</p>
 <p>This module contains several parsing and formatting functions used in the gui.core module to convert
-string numbers into actual mpmath numeric objects for all three arithmetic modes, as well as a means of
+string numbers into actual <code class="docutils literal notranslate"><span class="pre">mpmath</span></code> numeric objects for all three arithmetic modes, as well as a means of
 safely embedding these parsing functions to error-proof the application. There are also functions used
 for formatting the output data right before writing it to the output widget.</p>
 <section id="functions">
@@ -44,17 +44,17 @@ for formatting the output data right before writing it to the output widget.</p>
 <blockquote>
 <div><ul class="simple">
 <li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">parse_real(s)</span></code></dt><dd><p>Converts numeric array string into an mp.mpf list</p>
+<dt><code class="docutils literal notranslate"><span class="pre">parse_real(s)</span></code></dt><dd><p>Converts numeric array string into an <code class="docutils literal notranslate"><span class="pre">mp.mpf</span></code> list</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">parse_singleton(s)</span></code></dt><dd><p>Converts numeric array string into a list of iv.mpf singleton intervals <cite>[a; a]</cite></p>
+<dt><code class="docutils literal notranslate"><span class="pre">parse_singleton(s)</span></code></dt><dd><p>Converts numeric array string into a list of <code class="docutils literal notranslate"><span class="pre">iv.mpf</span></code> singleton intervals <code class="docutils literal notranslate"><span class="pre">[a;</span> <span class="pre">a]</span></code></p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">parse_interval(s)</span></code></dt><dd><p>Converts numeric interval array string into a list of iv.mpf intervals <cite>[a; b]</cite></p>
+<dt><code class="docutils literal notranslate"><span class="pre">parse_interval(s)</span></code></dt><dd><p>Converts numeric interval array string into a list of <code class="docutils literal notranslate"><span class="pre">iv.mpf</span></code> intervals <code class="docutils literal notranslate"><span class="pre">[a;</span> <span class="pre">b]</span></code></p>
 </dd>
 </dl>
 </li>
@@ -65,7 +65,7 @@ feedback display directly to the output widget.</p>
 </dl>
 </li>
 <li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">sci_str(x,</span> <span class="pre">prec)</span></code></dt><dd><p>Converts an mp.mpf number into a numeric string in the scientific format, with defined digital precision.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">sci_str(x,</span> <span class="pre">prec)</span></code></dt><dd><p>Converts an <code class="docutils literal notranslate"><span class="pre">mp.mpf</span></code> number into a numeric string in the scientific format, with defined digital precision.</p>
 </dd>
 </dl>
 </li>
