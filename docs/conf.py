@@ -23,8 +23,6 @@ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon']
 
 autodoc_mock_imports = [
     "tkinter",
-    "gui.functional_gui",
-    "utility.algorithm",
     # add any other imports that break on the server
 ]
 
