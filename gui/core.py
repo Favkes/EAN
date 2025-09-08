@@ -268,11 +268,13 @@ class App:
         data_y = self.input_gui_y.input_field_entry.get("1.0", "end-1c")
         data_z = self.input_gui_z.input_field_entry.get("1.0", "end-1c")
 
+        # [Error] Empty field
         if '' in (data_x, data_y, data_z):
             output = 'Not all fields have been filled.'
             self.write_output(output)
             return
 
+        # [Error] Incorrect format
         data_x = parsers.safe_parse(
             parser_func=self.parser,
             data_str=data_x,
@@ -280,6 +282,7 @@ class App:
             error_message='Incorrect data format in field \'X values\':\n{}'
         )
 
+        # [Error] Incorrect format
         data_y = parsers.safe_parse(
             parser_func=self.parser,
             data_str=data_y,
@@ -287,6 +290,7 @@ class App:
             error_message='Incorrect data format in field \'Y values\':\n{}'
         )
 
+        # [Error] Incorrect format
         data_z = parsers.safe_parse(
             parser_func=self.parser,
             data_str=data_z,
@@ -294,12 +298,13 @@ class App:
             error_message='Incorrect data format in field \'New Point x\':\n{}'
         )
 
+        # [Error] Dataset sizes mismatch
         if len(data_x) != len(data_y):
             self.write_output('The number of X values does not match that of the Y values.\n'
                               f'x.size() = {len(data_x)}, y.size() = {len(data_y)}')
             return
 
-
+        # [Error] Datasets contain NoneType
         if None not in (data_x, data_y, data_z):
             # size assertion (is sure to be true btw but it's there for convention's sake)
             assert len(data_x) > 0
@@ -307,6 +312,7 @@ class App:
             assert len(data_z) > 0
 
             # Duplicate check
+            # [Error] X dataset contains duplicates
             if len(set(data_x)) < len(data_x):
                 self.write_output('The X values contain duplicates, which is forbidden.')
                 return
