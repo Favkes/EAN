@@ -18,9 +18,9 @@ def main():
     """
     root = tk.Tk()
     root.title('EAN-NevLag25')
-    root.geometry("700x500")
-    root.minsize(400, 300)
-    root.maxsize(800, 600)
+    root.geometry("850x500")
+    root.minsize(700, 400)
+    root.maxsize(900, 600)
     root.config(
         padx=5, pady=5
     )
