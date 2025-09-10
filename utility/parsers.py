@@ -62,8 +62,11 @@ def safe_parse(parser_func,
                error_command = lambda e: print(e),
                error_message: str = '{}'):
     try:
-        return parser_func(data_str)
-    except ValueError as e:
+        data = parser_func(data_str)
+        if data is None:
+            error_command(error_message.format(data_str)+'\'')
+        return data
+    except Exception as e:
         e = str(e)
         e = e[:e.rfind("'")]
         e = e[e.rfind("'"):]

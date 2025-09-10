@@ -304,45 +304,43 @@ class App:
                               f'x.size() = {len(data_x)}, y.size() = {len(data_y)}')
             return
 
-        # [Error] Datasets contain NoneType
-        if None not in (data_x, data_y, data_z):
-            # size assertion (is sure to be true btw but it's there for convention's sake)
-            assert len(data_x) > 0
-            assert len(data_y) > 0
-            assert len(data_z) > 0
+        # size assertion (is sure to be true btw but it's there for convention's sake)
+        assert len(data_x) > 0
+        assert len(data_y) > 0
+        assert len(data_z) > 0
 
-            # Duplicate check
-            # [Error] X dataset contains duplicates
-            if len(set(data_x)) < len(data_x):
-                self.write_output('The X values contain duplicates, which is forbidden.')
-                return
+        # Duplicate check
+        # [Error] X dataset contains duplicates
+        if len(set(data_x)) < len(data_x):
+            self.write_output('The X values contain duplicates, which is forbidden.')
+            return
 
-            # print('x', data_x)
-            # print('y', data_y)
-            # print('z', data_z)
+        # print('x', data_x)
+        # print('y', data_y)
+        # print('z', data_z)
 
-            output1 = algorithm.lagrange(
-                data_x,
-                data_y,
-                data_z
-            )
-            output2 = algorithm.neville(
-                data_x,
-                data_y,
-                data_z
-            )
-            output3 = algorithm.lagrange_coefficients(
-                data_x,
-                data_y
-            )
-            # sgn, man, exp, bic = output._mpf_
-            # print(sgn, bin(man)[2:], exp, bic)
+        output1 = algorithm.lagrange(
+            data_x,
+            data_y,
+            data_z
+        )
+        output2 = algorithm.neville(
+            data_x,
+            data_y,
+            data_z
+        )
+        output3 = algorithm.lagrange_coefficients(
+            data_x,
+            data_y
+        )
+        # sgn, man, exp, bic = output._mpf_
+        # print(sgn, bin(man)[2:], exp, bic)
 
-            self.write_output(
-                f'Lagrange Interpolation: \n{parsers.prettify(output1)}\n'
-                f'Neville Interpolation: \n{parsers.prettify(output2)}\n'
-                f'Lagrange Polynomial Coefficients: \n{parsers.prettify(output3)}'
-            )
+        self.write_output(
+            f'Lagrange Interpolation: \n{parsers.prettify(output1)}\n'
+            f'Neville Interpolation: \n{parsers.prettify(output2)}\n'
+            f'Lagrange Polynomial Coefficients: \n{parsers.prettify(output3)}'
+        )
 
 
     def build(self):
