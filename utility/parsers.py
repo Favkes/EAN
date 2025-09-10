@@ -26,6 +26,7 @@ Functions
 """
 
 
+import mpmath
 from mpmath import iv, mp
 
 
@@ -33,14 +34,35 @@ iv.prec = 64
 mp.prec = 64
 
 
-def parse_real(s: str) -> list[float]:
+def ulp(x: mp.mpf) -> mp.mpf:
+    """
+    Returns the smallest increment at x (unit in th elast place).
+    :param x:
+    :return:
+    """
+    if x == 0:
+        return mp.mpf(2)**(-mp.prec)
+    else:
+        e = mpmath.floor(mpmath.log(x, 2))
+        return mpmath.mpf(2)**(e - mp.prec + 1)
+
+
+def next_below(x: mp.mpf) -> mp.mpf:
+    return x - ulp(x)
+
+
+def next_above(x: mp.mpf) -> mp.mpf:
+    return x + ulp(x)
+
+
+def parse_real(s: str) -> list:
     s = s.replace(' ', '').replace('\n', '')
     args = s.split(',')
     return [mp.mpf(x) for x in args]
 
 
 def parse_singleton(s: str) -> list:
-    return [iv.mpf([x, x]) for x in parse_real(s)]
+    return [iv.mpf([next_below(x), next_above(x)]) for x in parse_real(s)]
 
 
 def parse_interval(s: str) -> list:
