@@ -150,7 +150,7 @@ class App:
         )
         self.mode_switch_C = tk.Radiobutton(
             self.mode_switch_frame,
-            text='Singleton Arithmetic',
+            text='Singleton Interval Arithmetic',
             variable=self.current_mode,
             value='singleton',
             command=self.update_mode
