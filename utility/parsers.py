@@ -127,9 +127,11 @@ def prettify(data: iv.mpf | mp.mpf | list) -> str:
 
         outA, outB = output[1:-1].split(', ')
         outA, outB = mp.mpf(outA), mp.mpf(outB)
+        outDiff = outB - outA
         outA = sci_str(outA)
         outB = sci_str(outB)
-        output = f'[{outA}, {outB}]'
+        outDiff = sci_str(outDiff)
+        output = f'[{outA}, {outB}], width={outDiff}'
 
         return output
 
