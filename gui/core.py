@@ -157,7 +157,7 @@ class App:
         )
 
         self.input_frame = tk.Frame(self.mainframe)
-        input_gui_x_y_width = 25
+        input_gui_x_y_width = 35
         self.input_gui_x = InputGUI(self,
                                     self.input_frame,
                                     title='Input X values:',
