@@ -179,6 +179,11 @@ class App:
                                   height=10,
                                   state='disabled')
 
+        self.bottom_text = tk.Label(self.mainframe,
+                                    text='Oto nowa ma wytyczna, analiza numeryczna!',
+                                    font=('Courier', 8),
+                                    fg='gray80')
+
         # self.parser = lambda s: None
         self.update_mode()
 
@@ -418,6 +423,10 @@ class App:
 
         self.output_box.grid(
             row=1, column=0, columnspan=2, padx=4, sticky='w'
+        )
+
+        self.bottom_text.grid(
+            row=2, column=1, sticky='e'
         )
 
 
