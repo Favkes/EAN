@@ -8,6 +8,7 @@ all application processes.
 
 from gui.core import App
 import tkinter as tk
+import ctypes
 
 
 def main():
@@ -16,6 +17,12 @@ def main():
 
     :return: None
     """
+
+    # Set the windows taskbar icon
+    myappid = "favkescompany.favkesapp.v1"
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
+
+    # Initialize window
     root = tk.Tk()
     root.title('EAN-NevLag25')
     root.geometry("850x500")
@@ -24,7 +31,9 @@ def main():
     root.config(
         padx=5, pady=5
     )
+    root.iconbitmap("gui/icon.ico")
 
+    # Initialize app
     app = App(root)
     app.build()
     # app.debug_mode()
