@@ -356,12 +356,9 @@ class App:
         allow_copying_contents(self.input_gui_x.input_field_entry)
         allow_copying_contents(self.input_gui_y.input_field_entry)
         allow_copying_contents(self.input_gui_z.input_field_entry)
-        allow_pasting_in(self.input_gui_x,
-                         self.input_gui_x.input_field_entry_allowed_chars)
-        allow_pasting_in(self.input_gui_y,
-                         self.input_gui_y.input_field_entry_allowed_chars)
-        allow_pasting_in(self.input_gui_z,
-                         self.input_gui_z.input_field_entry_allowed_chars)
+        allow_pasting_in(self.input_gui_x)
+        allow_pasting_in(self.input_gui_y)
+        allow_pasting_in(self.input_gui_z)
 
         self.title_label.grid(
             row=0, column=0, sticky='ew'
