@@ -124,7 +124,8 @@ class App:
 
         self.title_label = tk.Label(
             self.root,
-            text='Oto nowa ma wytyczna - Analiza Numeryczna!'
+            text='Lagrange\'s Interpolation and Neville\'s Algorithm',
+            font=("Courier", 15)
         )
 
         self.mode_switch_frame = tk.Frame(self.mainframe)
