@@ -175,7 +175,7 @@ class App:
         )
 
         self.output_box = tk.Text(self.mainframe,
-                                  width=input_gui_x_y_width * 2 + 27,
+                                  width=input_gui_x_y_width * 2 + 28,
                                   height=10,
                                   state='disabled')
 
