@@ -56,8 +56,8 @@ def next_above(x: mp.mpf) -> mp.mpf:
 
 
 def parse_real(s: str) -> list:
-    s = s.replace(' ', '').replace('\n', '')
-    args = s.split(',')
+    s_ = s.replace(' ', '').replace('\n', '')
+    args = s_.split(',')
     return [mp.mpf(x) for x in args]
 
 
@@ -66,9 +66,9 @@ def parse_singleton(s: str) -> list:
 
 
 def parse_interval(s: str) -> list:
-    s = s.replace(' ', '').replace('\n', '')
-    s = s.replace('[', '').replace(']', '').replace(';', ',')
-    args = s.split(',')
+    s_ = s.replace(' ', '').replace('\n', '')
+    s_ = s_.replace('[', '').replace(']', '').replace(';', ',')
+    args = s_.split(',')
     args = [mp.mpf(x) for x in args]
     return [
         iv.mpf([
@@ -87,11 +87,15 @@ def safe_parse(parser_func,
         data = parser_func(data_str)
         if data is None:
             error_command(error_message.format(data_str)+'\'')
+            return None
         return data
     except Exception as e:
         e = str(e)
+        print(e)
         e = e[:e.rfind("'")]
         e = e[e.rfind("'"):]
+        if len(e) < 2:
+            e = '\'' + data_str
         error_command(error_message.format(e)+'\'')
         return None
 
