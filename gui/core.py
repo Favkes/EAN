@@ -64,12 +64,12 @@ def allow_copying_contents(widget: tk.Widget) -> None:
     widget.bind("<Control-c>", copying_func)
 
 
-def allow_pasting_in(widget: tk.Widget, allowed_chars: str = None) -> None:
+def allow_pasting_in(widget: InputGUI) -> None:
     """
-        Make any tkinter widget allow pasting in content to inside it from
+        Make gui.functional_gui.InputGUI objects allow pasting in content to inside it from
         the clipboard.
 
-        Makes any Tkinter widget support the Ctrl+V keybind widely used as
+        Makes gui.functional_gui.InputGUI objects support the Ctrl+V keybind widely used as
         "Paste from clipboard".
 
         :param widget: Any tkinter widget
@@ -90,17 +90,12 @@ def allow_pasting_in(widget: tk.Widget, allowed_chars: str = None) -> None:
         """
         try:
             clipboard_content = widget.clipboard_get()
-            if allowed_chars is not None:
-                clipboard_content = clipboard_content.translate(
-                    str.maketrans('', '', ''.join(
-                        set(clipboard_content) - set(allowed_chars)
-                    ))
-                )
-            widget.insert(tk.INSERT, clipboard_content)
+            widget.input_field_entry.insert(tk.INSERT, clipboard_content)
+            widget.update_input_filter()
         except tk.TclError:
             pass
         return "break"
-    widget.bind("<Control-v>", pasting_func)
+    widget.input_field_entry.bind("<Control-v>", pasting_func)
 
 
 class App:
@@ -361,11 +356,11 @@ class App:
         allow_copying_contents(self.input_gui_x.input_field_entry)
         allow_copying_contents(self.input_gui_y.input_field_entry)
         allow_copying_contents(self.input_gui_z.input_field_entry)
-        allow_pasting_in(self.input_gui_x.input_field_entry,
+        allow_pasting_in(self.input_gui_x,
                          self.input_gui_x.input_field_entry_allowed_chars)
-        allow_pasting_in(self.input_gui_y.input_field_entry,
+        allow_pasting_in(self.input_gui_y,
                          self.input_gui_y.input_field_entry_allowed_chars)
-        allow_pasting_in(self.input_gui_z.input_field_entry,
+        allow_pasting_in(self.input_gui_z,
                          self.input_gui_z.input_field_entry_allowed_chars)
 
         self.title_label.grid(
