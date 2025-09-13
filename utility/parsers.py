@@ -56,8 +56,8 @@ def next_above(x: mp.mpf) -> mp.mpf:
 
 
 def parse_real(s: str) -> list:
-    s_ = s.replace(' ', '').replace('\n', '')
-    args = s_.split(',')
+    s = s.replace(' ', '').replace('\n', '')
+    args = s.split(',')
     return [mp.mpf(x) for x in args]
 
 
@@ -66,9 +66,9 @@ def parse_singleton(s: str) -> list:
 
 
 def parse_interval(s: str) -> list:
-    s_ = s.replace(' ', '').replace('\n', '')
-    s_ = s_.replace('[', '').replace(']', '').replace(';', ',')
-    args = s_.split(',')
+    s = s.replace(' ', '').replace('\n', '')
+    s = s.replace('[', '').replace(']', '').replace(';', ',')
+    args = s.split(',')
     args = [mp.mpf(x) for x in args]
     return [
         iv.mpf([
