@@ -91,11 +91,13 @@ def safe_parse(parser_func,
         return data
     except Exception as e:
         e = str(e)
-        print(e)
         e = e[:e.rfind("'")]
         e = e[e.rfind("'"):]
+
+        # Use original input string if error message displays an empty string.
         if len(e) < 2:
             e = '\'' + data_str
+
         error_command(error_message.format(e)+'\'')
         return None
 
