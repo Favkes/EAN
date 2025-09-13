@@ -293,6 +293,10 @@ class App:
             error_message='Incorrect data format in field \'New Point x\':\n{}'
         )
 
+        # [Error] Incorrect format (Message already displayed in parsers.safe_parse())
+        if None in (data_x, data_y, data_z):
+            return
+
         # [Error] Dataset sizes mismatch
         if len(data_x) != len(data_y):
             self.write_output('The number of X values does not match that of the Y values.\n'
