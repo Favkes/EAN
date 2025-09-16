@@ -33,8 +33,45 @@
 
           <div class="body" role="main">
             
-  <section id="algorithm-module">
-<h1>Algorithm Module<a class="headerlink" href="#algorithm-module" title="Link to this heading">¶</a></h1>
+  <section id="module-utility.algorithm">
+<span id="algorithm-module"></span><h1>Algorithm Module<a class="headerlink" href="#module-utility.algorithm" title="Link to this heading">¶</a></h1>
+<p>Core algorithms module containing all numeric functions performed by the application.</p>
+<dl class="simple">
+<dt>This module contains the three algorithms performed by the application:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt><cite>lagrange()</cite>:</dt><dd><p>Lagrange’s Polynomial Interpolation algorithm.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><cite>neville()</cite>:</dt><dd><p>Neville’s Interpolation algorithm.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><cite>lagrange_coefficients()</cite>:</dt><dd><p>Computes Lagrange Interpolation Polynomial’s coefficients.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+<p>All three functions are constructed to work explicitly on mpmath floating point numbers and floating point intervals.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.algorithm.lagrange">
+<span class="sig-prename descclassname"><span class="pre">utility.algorithm.</span></span><span class="sig-name descname"><span class="pre">lagrange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arr_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arr_z</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">mpf</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ivmpf</span></span></span><a class="headerlink" href="#utility.algorithm.lagrange" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.algorithm.lagrange_coefficients">
+<span class="sig-prename descclassname"><span class="pre">utility.algorithm.</span></span><span class="sig-name descname"><span class="pre">lagrange_coefficients</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arr_y</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#utility.algorithm.lagrange_coefficients" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.algorithm.neville">
+<span class="sig-prename descclassname"><span class="pre">utility.algorithm.</span></span><span class="sig-name descname"><span class="pre">neville</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arr_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arr_z</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">mpf</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ivmpf</span></span></span><a class="headerlink" href="#utility.algorithm.neville" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </section>
 
 

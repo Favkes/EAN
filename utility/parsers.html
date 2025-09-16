@@ -32,8 +32,101 @@
 
           <div class="body" role="main">
             
-  <section id="parsers">
-<h1>Parsers<a class="headerlink" href="#parsers" title="Link to this heading">¶</a></h1>
+  <section id="module-utility.parsers">
+<span id="parsers"></span><h1>Parsers<a class="headerlink" href="#module-utility.parsers" title="Link to this heading">¶</a></h1>
+<p>Data extraction module containing all the parsing functions used to convert user input into actual numeric data.</p>
+<p>This module contains several parsing and formatting functions used in the gui.core module to convert
+string numbers into actual <code class="docutils literal notranslate"><span class="pre">mpmath</span></code> numeric objects for all three arithmetic modes, as well as a means of
+safely embedding these parsing functions to error-proof the application. There are also functions used
+for formatting the output data right before writing it to the output widget.</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">parse_real(s)</span></code></dt><dd><p>Converts numeric array string into an <code class="docutils literal notranslate"><span class="pre">mp.mpf</span></code> list</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">parse_singleton(s)</span></code></dt><dd><p>Converts numeric array string into a list of <code class="docutils literal notranslate"><span class="pre">iv.mpf</span></code> singleton intervals <code class="docutils literal notranslate"><span class="pre">[a;</span> <span class="pre">a]</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">parse_interval(s)</span></code></dt><dd><p>Converts numeric interval array string into a list of <code class="docutils literal notranslate"><span class="pre">iv.mpf</span></code> intervals <code class="docutils literal notranslate"><span class="pre">[a;</span> <span class="pre">b]</span></code></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">safe_parse(parser_func,</span> <span class="pre">data_str,</span> <span class="pre">error_command,</span> <span class="pre">error_message)</span></code></dt><dd><p>Embeds execution of the parser_func function in an exception block, allowing for configurable error
+feedback display directly to the output widget.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">sci_str(x,</span> <span class="pre">prec)</span></code></dt><dd><p>Converts an <code class="docutils literal notranslate"><span class="pre">mp.mpf</span></code> number into a numeric string in the scientific format, with defined digital precision.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">prettify(data)</span></code></dt><dd><p>Formats the output data of any of the 3 algorithms implemented in the project into human-readable text
+ready to be printed in the output widget.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.parsers.next_above">
+<span class="sig-prename descclassname"><span class="pre">utility.parsers.</span></span><span class="sig-name descname"><span class="pre">next_above</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">mpf</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">mpf</span></span></span><a class="headerlink" href="#utility.parsers.next_above" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.parsers.next_below">
+<span class="sig-prename descclassname"><span class="pre">utility.parsers.</span></span><span class="sig-name descname"><span class="pre">next_below</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">mpf</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">mpf</span></span></span><a class="headerlink" href="#utility.parsers.next_below" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.parsers.parse_interval">
+<span class="sig-prename descclassname"><span class="pre">utility.parsers.</span></span><span class="sig-name descname"><span class="pre">parse_interval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#utility.parsers.parse_interval" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.parsers.parse_real">
+<span class="sig-prename descclassname"><span class="pre">utility.parsers.</span></span><span class="sig-name descname"><span class="pre">parse_real</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#utility.parsers.parse_real" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.parsers.parse_singleton">
+<span class="sig-prename descclassname"><span class="pre">utility.parsers.</span></span><span class="sig-name descname"><span class="pre">parse_singleton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#utility.parsers.parse_singleton" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.parsers.prettify">
+<span class="sig-prename descclassname"><span class="pre">utility.parsers.</span></span><span class="sig-name descname"><span class="pre">prettify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ivmpf</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">mpf</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#utility.parsers.prettify" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.parsers.safe_parse">
+<span class="sig-prename descclassname"><span class="pre">utility.parsers.</span></span><span class="sig-name descname"><span class="pre">safe_parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser_func</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_str:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_command=&lt;function</span> <span class="pre">&lt;lambda&gt;&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error_message:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">'{}'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utility.parsers.safe_parse" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.parsers.sci_str">
+<span class="sig-prename descclassname"><span class="pre">utility.parsers.</span></span><span class="sig-name descname"><span class="pre">sci_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">18</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#utility.parsers.sci_str" title="Link to this definition">¶</a></dt>
+<dd><p>Convert mpmath.mpf to string in the form 1.234E+0001</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="utility.parsers.ulp">
+<span class="sig-prename descclassname"><span class="pre">utility.parsers.</span></span><span class="sig-name descname"><span class="pre">ulp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">mpf</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">mpf</span></span></span><a class="headerlink" href="#utility.parsers.ulp" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the smallest increment at x (unit in th elast place).
+:param x:
+:return:</p>
+</dd></dl>
+
 </section>
 
 
